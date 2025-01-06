@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+	title="Privacy Policy | DJ Pelón"
+	description="A list of all the commands Dj Pelón has to offer."
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Privacy Policy"
+				tagline="Last Modified: January 5, 2023"
+				align="start"
+			/>
+			<div class="content">
+				<h2>1. Overview</h2>
+				<p class="text">
+					Please read the privacy policy below to learn more about how we collect, use, and share your personal information.
+				</p>
+				<h2>2. Personal Data We Collect</h2>
+				<p class="text">
+					DJ Pelón doesn't stores your username or profile picture. We are not saving the guilds's names, pictures or another information related to them. 
+				</p>
+				<h2>3. Bot rules</h2>
+				<p class="text">
+					By using DJ Pelón, you are agreening to the following rules 
+				</p>
+				<ul>
+					<li class="list-text">No spamming. For us, spamming is doing lots of commands without really using the bot</li>
+					<li class="list-text">No advertising.</li>
+					<li class="list-text">No hacking. We don't allow any hacking.</li>
+				</ul>
+				<p class="text">
+					If you find a bug, please contact me as bot owner in Discord as 'koizu'.
+				</p>
+				<h2>4. Content</h2>
+				<p class="text">
+					DJ Pelón is streaming content from Youtube/Spotify only. When you send a Spotify link, the bot will search the song on Youtube/Spotify and plays it.
+				</p>
+				<h2>Final</h2>
+				<p class="text">
+					If you have any questions or concerns, you can reach the developers via <a href="https://github.com/k-cr" target="_blank">Github Page</a> or contact me as bot owner in Discord as 'koizu'.
+				</p>
+			</div>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.content {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	h2 {
+		font-size: 2.4rem;
+		font-weight: 800;
+	}
+
+	.text{
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		font-size: 1.25rem;
+	}
+
+	.list-text{
+		/* padding-top: 1rem; */
+		/* padding-bottom: 1rem; */
+		font-size: 1.25rem;
+	}
+
+	.command {
+		color: #1c1c1c;
+		font-size: 0.875rem;
+		font-weight: 700;
+	}
+
+	.description {
+		color: #2e3032;
+		font-size: 0.875rem;
+	}
+
+	.chevron {
+		opacity: 0;
+		transition: opacity 0.2s;
+		color: #9ca3af;
+	}
+
+	.command-item:hover .chevron {
+		opacity: 1;
+	}
+</style>

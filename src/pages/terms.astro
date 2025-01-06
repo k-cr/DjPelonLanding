@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+	title="Terms of Service | DJ Pelón"
+	description="A list of all the commands Dj Pelón has to offer."
+>
+	<div class="stack gap-20">
+		<main class="wrapper stack gap-8">
+			<Hero
+				title="Terms of Service"
+				tagline="Last Modified: January 5, 2023"
+				align="start"
+			/>
+			<div class="content">
+				<h2>1. Overview</h2>
+				<p class="text">
+					These Terms govern the use of this Website, and, any other related Agreement or legal relationship with the Owner in a legally binding way. Capitalized words are defined in the relevant dedicated section of this document. The User must read this document carefully.
+				</p>
+				<h2>2. Personal Data We Collect</h2>
+				<p class="text">
+					DJ Pelón doesn't store messages, or personal information. We are not saving the guilds's names, pictures or another information related to them.
+				</p>
+				<h2>3. Acknowledgment</h2>
+				<p class="text">
+					These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service. Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service. By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service. Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.
+				</p>
+				<h2>4. Content</h2>
+				<p class="text">
+					Unless where otherwise specified or clearly recognizable, all content available on this Website is owned or provided by the Owner or its licensors. The Owner undertakes its utmost effort to ensure that the content provided on this Website infringes no applicable legal provisions or third-party rights. However, it may not always be possible to achieve such a result. In such cases, without prejudice to any legal prerogatives of Users to enforce their rights, Users are kindly asked to preferably report related complaints using the contact details provided in this document.
+				</p>
+				<h2>Final</h2>
+				<p class="text">
+					If you have any questions or concerns, you can reach the developers via <a href="https://github.com/k-cr" target="_blank">Github Page</a> or contact me as bot owner in Discord as 'koizu'.
+				</p>
+			</div>
+		</main>
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.content {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	h2 {
+		font-size: 2.4rem;
+		font-weight: 800;
+	}
+
+	.text{
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		font-size: 1.25rem;
+	}
+
+	.command {
+		color: #1c1c1c;
+		font-size: 0.875rem;
+		font-weight: 700;
+	}
+
+	.description {
+		color: #2e3032;
+		font-size: 0.875rem;
+	}
+
+	.chevron {
+		opacity: 0;
+		transition: opacity 0.2s;
+		color: #9ca3af;
+	}
+
+	.command-item:hover .chevron {
+		opacity: 1;
+	}
+</style>

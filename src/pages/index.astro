@@ -1,51 +1,76 @@
 ---
-import { getCollection } from 'astro:content';
-
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
-import Grid from '../components/Grid.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Skills from '../components/Skills.astro';
 
-// Content Fetching: List four most recent work projects
-const projects = (await getCollection('work'))
-	.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
-	.slice(0, 4);
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+const projects = [
+	{
+		prefix: '!',
+		command: 'play',
+		description: 'Plays a song. You can use a Spotify link or a query.',
+	},
+	{
+		prefix: '!',
+		command: 'skip',
+		description: 'Skips the current song and plays the next one.',
+	},
+	{
+		prefix: '!',
+		command: 'stop',
+		description: 'Stops the current song.',
+	},
+	{
+		prefix: '!',
+		command: 'leave',
+		description: 'Leaves the voice channel.',
+	},
+	{
+		prefix: '!',
+		command: 'queue',
+		description: 'Shows the current queue. You can use the `skip` command to skip a song.',
+	},
+	{
+		prefix: '!',
+		command: 'np',
+		description: 'Shows the current song.',
+	},
+	{
+		prefix: '!',
+		command: 'volume',
+		description: 'Sets the volume. You can put a number from 0 to 100 to set the volume.',
+	},
+];
 ---
 
-<BaseLayout>
+<BaseLayout title="Home | DJ Pelón" description="A cool Discord bot that joins you to play music!">
 	<div class="stack gap-20 lg:gap-48">
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Jeanine White"
-					tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+					title="This is DJ Pelón"
+					tagline="A cool Discord bot that joins you to play music!"
 					align="start"
 				>
 					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+						<Pill><Icon icon="code" size="1.33em" /> Bot</Pill>
+						<Pill><Icon icon="microphone-stage" size="1.33em" /> Music</Pill>
 					</div>
 				</Hero>
 
 				<img
-					alt="Jeanine White smiling in a red plaid shirt and tortoise shell glasses"
-					width="480"
-					height="620"
-					src="/assets/portrait.jpg"
+					alt="Dj Pelón smiling with sunglasses"
+					width="400"
+					height="540"
+					src="/assets/portrait.png"
 				/>
 			</header>
 
@@ -55,49 +80,34 @@ const projects = (await getCollection('work'))
 		<main class="wrapper stack gap-20 lg:gap-48">
 			<section class="section with-background with-cta">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Work</h3>
-					<p>Take a look below at some of my featured work for clients from the past few years.</p>
+					<h3>Commands</h3>
+					<p>Take a look below at all the commands Dj Pelón has to offer.</p>
 				</header>
 
 				<div class="gallery">
-					<Grid variant="offset">
+					<div class="command-list">
 						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
+							projects.map(({ prefix, command, description }) => (
+									<div class="command-item">
+										<div class="prefix">{prefix}</div>
+										<div class="content">
+										<span class="command">{command}</span>
+										<span class="description">{description}</span>
+										</div>
+										<svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+										</svg>
+									</div>
+								))
+							}
+					</div>
 				</div>
 
 				<div class="cta">
-					<CallToAction href="/work/">
+					<CallToAction href="/commands/">
 						View All
 						<Icon icon="arrow-right" size="1.2em" />
 					</CallToAction>
-				</div>
-			</section>
-
-			<section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Mentions</h3>
-					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
-					</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-								</li>
-							))
-						}
-					</Grid>
 				</div>
 			</section>
 		</main>
@@ -248,5 +258,69 @@ const projects = (await getCollection('work'))
 			border-radius: 1.5rem;
 			height: 9.5rem;
 		}
+	}
+	.command-list {
+		width: 100%;
+		/* max-width: 42rem; */
+		margin: 0 auto;
+		background-color: #fefefe;
+		border-radius: 0.5rem;
+		padding: 0.5rem;
+	}
+
+	.command-item {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.5rem 0.75rem;
+		border-radius: 0.375rem;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+
+	.command-item:hover {
+		background-color: #e1c1f5;
+	}
+
+	.prefix {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background-color: #7611a6;
+		border-radius: 0.375rem;
+		color: #ffffff;
+	}
+
+	.command-item:hover .prefix {
+		background-color: #9f24d8;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	.command {
+		color: #1c1c1c;
+		font-size: 0.875rem;
+		font-weight: 700;
+	}
+
+	.description {
+		color: #2e3032;
+		font-size: 0.875rem;
+	}
+
+	.chevron {
+		opacity: 0;
+		transition: opacity 0.2s;
+		color: #9ca3af;
+	}
+
+	.command-item:hover .chevron {
+		opacity: 1;
 	}
 </style>
